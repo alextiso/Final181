@@ -142,13 +142,12 @@ public class LoanCalcViewController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		//TODO: This is for you... so you don't have to type in values over and over.  
-		//	Uncomment the next three lines to set these default values
-		/*		
+		
+				
 		LoanAmount.setText("75000");
 		InterestRate.setText("6.58");
 		NbrOfYears.setText("20");
-		*/
+		
 		cmbLoanType.getItems().addAll("Home", "Auto", "School");
 
 		cmbLoanType.getSelectionModel().selectFirst();
@@ -230,8 +229,11 @@ public class LoanCalcViewController implements Initializable {
 		stackedBarChart.getChildren().clear();
 		
 		lblInterestSaved.setText("");
+		lblMonthlyPayment.setText("");
+		lblPaymentsSaved.setText("");
+		lblTotalInterest.setText("");
+		lblInterestSaved.setText("");
 		
-		//TODO: The line above shows you how to clear lblInterestSaved.  Clear the rest of the calculated fields
 
 	}
 
@@ -250,13 +252,28 @@ public class LoanCalcViewController implements Initializable {
 		//TODO: The line above validates LoanAmount.  To fail validation, add to 'contentText' and set 'goodtoGo' to false
 		// 	add the following validaitons:
 		
-		//TODO: Validate InterestRate is between 0 and 20.  Make sure there's no alpha characters.
+		if( InterestRate.getText().trim().isEmpty() || !(Double.parseDouble(InterestRate.getText().trim()) > 0) && Double.parseDouble(InterestRate.getText().trim()) <20){
+			contentText.append("InterestRate must be between 0 and 20 and a double. \n");
+			//Validates InterestRate is between 0 and 20.  Makes sure there's no alpha characters.
+			goodtogo = false;
+		}
+		if( NbrOfYears.getText().trim().isEmpty() || !(Double.parseDouble(NbrOfYears.getText().trim()) > 0 )) {
+			contentText.append("NbrOfYears must be a double greater than 0. \n");
+			// Validate NbrOfYears is > 0
+			goodtogo = false;
+		}
+		if (EscrowAmount.getText().trim().isEmpty() || !(Double.parseDouble(EscrowAmount.getText().trim()) >= 0 )) {
+			contentText.append("Escrow must be a double greater or equal to 0. \n");
+			// Validates EscrowAmount >= 0
+			goodtogo = false;
+		}
+		
+		if(AdditionalPayment.getText().trim().isEmpty() || !(Double.parseDouble(AdditionalPayment.getText().trim()) >= 0 )){
+			contentText.append("AdditionalPayments must be a double greater or equal to 0. \n");
+			// Validates AdditionalPayemnts >= 0
+			goodtogo = false;
+		}
 
-		//TODO: Validate NbrOfYears is > 0
-		
-		//TODO: Validate EscrowAmount >= 0
-		
-		//TODO: Validate AdditionalPayemnt >= 0
 		
 		if (!goodtogo) {
 			Alert fail = new Alert(AlertType.ERROR);

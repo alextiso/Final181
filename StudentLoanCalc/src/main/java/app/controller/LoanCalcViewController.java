@@ -236,6 +236,7 @@ public class LoanCalcViewController implements Initializable {
 		
 
 	}
+	
 
 	private boolean ValidateData() {
 		StringBuilder contentText = new StringBuilder();

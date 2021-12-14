@@ -35,49 +35,51 @@ public class Loan {
 		while(RemainingBalance >= (this.GetPMT()+AdditionalPayment)){
 			//When checking if payment is last will account for the additional Payment
 			Payment payment = new Payment(RemainingBalance, PaymentCnt++, startDate, this, false);
+			//"payment" becomes a function of the remaining balance the payment count we are on+1 and the start date
 			RemainingBalance = payment.getEndingBalance();
 			startDate = startDate.plusMonths(1);
 			loanPayments.add(payment);
-			//COMMENT THIS BITCH
+			
 		}
 		Payment payment = new Payment(RemainingBalance, PaymentCnt++, startDate, this, false);
 		loanPayments.add(payment);
 
-		//TODO: Create final payment (last payment might b	e partial payment)QUESTIONABLE
+	
 	}
 
 	public double GetPMT() {
 		double PMT = 0;
 		PMT = Math.abs(FinanceLib.pmt(this.getInterestRate()/12,this.getLoanPaymentCnt(),this.getLoanAmount(),this.getLoanBalanceEnd(),this.isbCompoundingOption()));
-		//TODO: Calculate PMT (use FinanceLib.pmt) FINISHHHHHHHED BUT COMMENTS 
+		// Calculating PMT 
 		return Math.abs(PMT);
 	}
 
 	public double getTotalPayments() {
 		double tot = 0;
-		for(Payment i : this.loanPayments) {
+		for(Payment i : this.loanPayments) {// Calculating total payments by calling getPayments and adding to the total for every time (i) in loanpayments
 			tot += i.getPayment();
+			
 		}
-		//TODO: Calculate total payments FINISHED BUT COMMENT
+		
 		return tot;
 	}
 
 	public double getTotalInterest() {
 		double interest = 0;
-		for(Payment i : this.loanPayments) {
+		for(Payment i : this.loanPayments) { //calculating total interest by calling getPayments and adding to the total for every time (i) in loanpayments
 			interest += i.getPayment();
 		}
-		//TODO: Calculate total Interest FINISHEDDDDDDD
-		return interest-this.LoanAmount;
+		
+		return interest-this.LoanAmount; //subtracts the loan amount to just get the interest paid
 
 	}
 
 	public double getTotalEscrow() {
 		double escrow = 0;
-		for(Payment i : this.loanPayments) {
+		for(Payment i : this.loanPayments) {//I am still not exactly sure what escrow is buttt this does the same as the fuctions above by iterating through loanPayments and addign to the total escrow the escrow payment
 			escrow += i.getEscrowPayment();
 		}
-		//TODO: Calculate total escrow  
+		
 		return escrow;
 
 	}

@@ -47,8 +47,7 @@ public class TestPMT {
 
 		Loan loan = new Loan(dLoanAmount, dInterestRate, iNbrOfYears, localDate, dAdditionalPayment, dEscrow);
 		
-		System.out.println(loan.getTotalPayments());
-		System.out.println(loan.getTotalInterest());
+		
 		assertEquals(loan.getLoanPayments().size(), 240);
 		assertEquals(loan.getTotalPayments(), 93033.62, 3);
 		assertEquals(loan.getTotalInterest(), 43035.87, 0.01);
@@ -76,11 +75,11 @@ public class TestPMT {
 		//Checking how much the payments saved
 		assertEquals(Loan_without_payments.getTotalPayments() - loan.getTotalPayments(), 23693.23, .01);
 		
-		//Checking number of Payments
+		//Checking number of Payments ( total payment amt) 
 		
 		assertEquals(loan.getLoanPayments().size(), 118);
 		
-		//Total Payments
+		//checking Total Payments
 		assertEquals(loan.getTotalPayments(), 69342.64, .01);
 		
 		//checking Total interests

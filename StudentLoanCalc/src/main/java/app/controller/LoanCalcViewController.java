@@ -260,7 +260,7 @@ public class LoanCalcViewController implements Initializable {
 		}
 		if( NbrOfYears.getText().trim().isEmpty() || !(Double.parseDouble(NbrOfYears.getText().trim()) > 0 )) {
 			contentText.append("NbrOfYears must be a double greater than 0. \n");
-			// Validate NbrOfYears is > 0
+			// Validates NbrOfYears is > 0
 			goodtogo = false;
 		}
 		if (EscrowAmount.getText().trim().isEmpty() || !(Double.parseDouble(EscrowAmount.getText().trim()) >= 0 )) {

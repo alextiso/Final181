@@ -67,7 +67,8 @@ public class TestPMT {
 		Loan loan = new Loan(dLoanAmount, dInterestRate, iNbrOfYears, localDate, dAdditionalPayment, dEscrow);
 		Loan Loan_without_payments = new Loan(dLoanAmount, dInterestRate, iNbrOfYears, localDate, 0, dEscrow);
 		
-		//My calculations are slightly off However I believe that it has to do with the remaining decimal places of the double being added to the total payments/interest and therefore after 118 its starting to add up
+		//My calculations are slightly off from what is given in the excel However I believe that it has to do with the remaining decimal places of the double being added to the total payments/interest and therefore after 118 its starting to add up
+		//However the math that is actually being done should be right 
 		
 		//Testing Interest Saved
 		assertEquals(Loan_without_payments.getTotalInterest() - loan.getTotalInterest(), 23693.23, .01);
@@ -79,10 +80,10 @@ public class TestPMT {
 		
 		assertEquals(loan.getLoanPayments().size(), 118);
 		
-		//checking Total Payments
+		//Checking Total Payments
 		assertEquals(loan.getTotalPayments(), 69342.64, .01);
 		
-		//checking Total interests
+		//Checking Total interests
 		assertEquals(loan.getTotalInterest(), 19342.64 , .01); 
 
 		//TODO: Assert correct values based on amort spreadsheet (total payments, total payment amt, 
